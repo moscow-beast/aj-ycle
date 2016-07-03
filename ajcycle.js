@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2016 Juriy Bodunov-Skvortsov (digitalbush.com)
+ * Copyright (c) 2016 Juriy Bodunov-Skvortsov (https://github.com/moscow-beast)
  */
 
 function ajсycle(props, callback) {
