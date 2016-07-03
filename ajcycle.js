@@ -11,10 +11,10 @@ function ajсycle(props, callback) {
         init: function () {
             a.xmlhttp = a.getXmlHttp();
             switch (a.props.method) {
-                case 'get':
+                case 'GET':
                     a.get();
                     break;
-                case 'post':
+                case 'POST':
                     a.post();
                     break;
             }
@@ -81,7 +81,7 @@ function ajсycle(props, callback) {
                 props.encoding = 0;
             }
             var body = a.prepareBodyForPost();
-            a.xmlhttp.open("POST", a.props.url, true);
+            a.xmlhttp.open('POST', a.props.url, true);
             a.xmlhttp.setRequestHeader('Content-Type', a.encoding[props.encoding]);
             a.xmlhttp.onreadystatechange = function () {
                 if (a.xmlhttp.readyState === 4) {
