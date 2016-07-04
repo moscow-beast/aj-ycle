@@ -14,28 +14,31 @@
 
 ## Примеры
 
-Вызов `ajсycle( параметры и данные , callback-функция )`
+Вызов `ajсycle( параметры , данные , callback-функция )`
 
 Типичое использование:
 
     ajсycle({
         method: 'POST',
         encoding: 0,
-        url: './ajax.php',
-        values: {
+        url: './ajax.php'
+        },
+        {
             name: 'John',
             surname: 'Doe'
-        }
-    }, function (resp) {
-        console.log(resp);
-    });
+        },
+        function (resp) {
+            console.log(resp);
+        });
 
-### Структура параметров и данных
+### Параметры
 
 method: метод, GET или POST
 
-encoding: кодирование, только для метода POST, 0 - x-www-form-urlencoded
-1 - form-dataform-data
+encoding: кодирование, только для метода POST, 0 - application/x-www-form-urlencoded
+1 - multipart/form-dataform-data, 3 - text/plain
 
-values: объект, на данный момент поддерживается только одномерный ассоциативный
-массив.
+### Данные
+
+Объект: на данный момент поддерживается только одномерный ассоциативный
+массив. Либо строка, в таком случае устанавливается кодировка text/plain

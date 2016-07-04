@@ -5,19 +5,17 @@
         <title>ajсycle</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="/ajcycle.js"></script>
+        <script type="text/javascript" src="./ajcycle.js"></script>
     </head>
     <body>
-        <div>TODO write content</div>
         <script type="text/javascript">
             ajсycle({
                 method: 'POST',
                 encoding: 0,
-                url: './',
-                values: {
-                    name: 'John',
-                    surname: 'Doe'
-                }
+                url: './'
+            }, {
+                name: 'John',
+                surname: 'Doe'
             }, function (resp) {
                 console.log(resp);
             });

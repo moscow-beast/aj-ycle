@@ -2,11 +2,12 @@
  * Copyright (c) 2016 Juriy Bodunov-Skvortsov (https://github.com/moscow-beast)
  */
 
-function ajсycle(props, callback) {
+function ajсycle(props, values, callback) {
     var a = {
         encoding: [
             'application/x-www-form-urlencoded',
-            'multipart/form-data'
+            'multipart/form-data',
+            'text/plain'
         ],
         init: function () {
             a.xmlhttp = a.getXmlHttp();
@@ -48,7 +49,7 @@ function ajсycle(props, callback) {
         prepareBodyForPost: function () {
             switch (props.encoding) {
                 case 0:
-                    return a.serializeObject(a.props.values);
+                    return a.serializeObject(a.values);
                     break;
                 case 1:
                     var boundary = String(Math.random()).slice(2);
@@ -56,16 +57,19 @@ function ajсycle(props, callback) {
                     var boundaryLast = '--' + boundary + '--\r\n'
 
                     var body = ['\r\n'];
-                    for (var key in a.props.values) {
-                        body.push('Content-Disposition: form-data; name="' + key + '"\r\n\r\n' + a.props.values[key] + '\r\n');
+                    for (var key in a.values) {
+                        body.push('Content-Disposition: form-data; name="' + key + '"\r\n\r\n' + a.values[key] + '\r\n');
                     }
                     a.encoding[1] += '; boundary=' + boundary;
                     return body.join(boundaryMiddle) + boundaryLast;
                     break;
+                case 2:
+                    return a.values;
+                    break;
             }
         },
         get: function () {
-            var reqUrl = typeof (a.props.values) === "object" ? a.props.url + '?' + a.serializeObject(a.props.values) : a.props.url;
+            var reqUrl = typeof (a.values) === "object" ? a.props.url + '?' + a.serializeObject(a.values) : a.props.url;
             a.xmlhttp.open('GET', reqUrl, true);
             a.xmlhttp.send(null);
             a.xmlhttp.onreadystatechange = function () {
@@ -77,12 +81,15 @@ function ajсycle(props, callback) {
             };
         },
         post: function () {
-            if (typeof props.encoding !== 'number') {
-                props.encoding = 0;
+            if (typeof a.props.encoding !== 'number') {
+                a.props.encoding = 0;
+            }
+            if (typeof a.values === 'string') {
+                a.props.encoding = 2;
             }
             var body = a.prepareBodyForPost();
             a.xmlhttp.open('POST', a.props.url, true);
-            a.xmlhttp.setRequestHeader('Content-Type', a.encoding[props.encoding]);
+            a.xmlhttp.setRequestHeader('Content-Type', a.encoding[a.props.encoding]);
             a.xmlhttp.onreadystatechange = function () {
                 if (a.xmlhttp.readyState === 4) {
                     if (a.xmlhttp.status === 200) {
@@ -95,6 +102,7 @@ function ajсycle(props, callback) {
 
     };
     a.props = props;
+    a.values = values;
     a.callback = callback;
     a.init();
 }
