@@ -38,7 +38,7 @@ function ajсycle(props, values, callback) {
             }
             return xmlhttp;
         },
-        serializeObject: function (obj,prefix) {
+        serializeObject: function (obj, prefix) {
             var str = [];
             for (var p in obj) {
                 if (obj.hasOwnProperty(p)) {
@@ -106,8 +106,12 @@ function ajсycle(props, values, callback) {
 
     };
     a.props = props;
-    a.values = values;
-    a.callback = callback;
+    if ((typeof values === 'function') && (callback === undefined) && (props.method === 'GET')) {
+        a.callback = values;
+    } else {
+        a.values = values;
+        a.callback = callback;
+    }
     a.init();
 }
 
