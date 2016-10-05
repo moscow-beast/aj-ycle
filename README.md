@@ -1,4 +1,4 @@
-# ajсycle = ajax + biсycle
+# Аяксипед (ajсycle = ajax + biсycle)
 
 Простое native js решение для работы с ajax на основе XMLHttpRequest.
 Создано, по крайней мере изначально, в (само)образовательных целях.
@@ -10,7 +10,7 @@
 ## Summary
 
 На данный момент реализованы методы GET и POST. Метод POST поддерживает
-кодирование application/x-www-form-urlencoded и multipart/form-data
+кодирование application/x-www-form-urlencoded, multipart/form-data и text/plain
 
 ## Примеры
 
