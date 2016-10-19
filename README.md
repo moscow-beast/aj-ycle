@@ -1,22 +1,18 @@
 # Аяксипед (ajсycle = ajax + biсycle)
 
-Простое native js решение для работы с ajax на основе XMLHttpRequest.
-Создано, по крайней мере изначально, в (само)образовательных целях.
-Но это не значит что решение не может быть использовано в практических целях.
-
-Запросы реализованы только ассинхронные, поэтому фукция ничего не возращает,
-а передает данные в callback - функцию.
+Simple native js wrapper for XMLHttpRequest. Only asynchronous requests
+implemented, because synchronous are deprecated in most cases.
 
 ## Summary
 
-На данный момент реализованы методы GET и POST. Метод POST поддерживает
-кодирование application/x-www-form-urlencoded, multipart/form-data и text/plain
+GET and POST methods are implemented. With POST method supports this encodings:
+application/x-www-form-urlencoded, multipart/form-data and text/plain
 
-## Примеры
+## Examples
 
-Вызов `ajсycle( параметры , данные , callback-функция )`
+Usage: `ajсycle( request parameters , data JS object or plain text , callback )`
 
-Типичое использование:
+Typical usage:
 
     ajсycle({
         method: 'POST',
@@ -31,18 +27,23 @@
             console.log(resp);
         });
 
-### Параметры
+### Request parameters
 
-method: метод, GET или POST
+method: GET or POST
 
-encoding: кодирование, только для метода POST, 0 - application/x-www-form-urlencoded
-1 - multipart/form-dataform-data, 3 - text/plain
+encoding: only for POST:
+    0 - application/x-www-form-urlencoded
+    1 - multipart/form-dataform-data
+    3 - text/plain
 
-### Данные
+### Data
 
-Объект: ~~на данный момент поддерживается только одномерный ассоциативный
-массив.~~ Либо строка, в таком случае устанавливается кодировка text/plain
+JS object for POST and GET, plain text for POST, 
+or may be skiped for GET - in this case, second argument can be used for
+callback function.
 
- ### To do
+## To do
 
-Write international documentation
+File uploads
+Progress bar calback
+PUT method
