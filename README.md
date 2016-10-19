@@ -32,8 +32,8 @@ Typical usage:
 method: GET or POST
 
 encoding: only for POST:
-    0 - application/x-www-form-urlencoded
-    1 - multipart/form-dataform-data
+    0 - application/x-www-form-urlencoded;
+    1 - multipart/form-dataform-data;
     3 - text/plain
 
 ### Data
