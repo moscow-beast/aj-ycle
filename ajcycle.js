@@ -2,7 +2,7 @@
  * Copyright (c) 2016 Juriy Bodunov-Skvortsov (https://github.com/moscow-beast)
  */
 
-function ajсycle(props, values, callback) {
+function ajcycle(props, values, callback) {
     var a = {
         encoding: [
             'application/x-www-form-urlencoded',
